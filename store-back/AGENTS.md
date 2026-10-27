@@ -119,7 +119,8 @@ src/
 
   | Rol | Archivo |
   |---|---|
-  | Modelo de dominio / value object | `user.ts`, `phone.ts` |
+  | Modelo de dominio / value object | `user.model.ts`, `phone.model.ts` |
+  | Servicio de dominio | `billing-policy.service.ts` |
   | Excepción | `insufficient-stock.exception.ts` |
   | Entity | `user.entity.ts` |
   | Enum | `role.enum.ts` |
@@ -382,8 +383,9 @@ Dependencias previstas y aprobadas para cuando se necesiten:
 | Enums de dominio (`Role`, `PaymentMethod`, `PaymentStatus`) | ✅ |
 | Entities TypeORM (6 tablas + `TimestampedEntity`) | ✅ |
 | Modelos de dominio y excepciones | ✅ |
-| `BillingPolicy` (domain/service) | ⏳ |
-| Puertos, casos de uso y adapters de persistencia + `UnitOfWork` | ⏳ |
+| `BillingPolicy` (domain/service) | ✅ |
+| Puertos `application/ports/in` y `application/ports/out` | ✅ |
+| Casos de uso y adapters de persistencia + `UnitOfWork` | ⏳ |
 | Controllers, DTOs, filtro global, `DevAuthGuard` | ⏳ |
 | Seed del admin inicial | ⏳ |
 | Cloudinary | ⏳ |

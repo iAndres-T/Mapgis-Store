@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { BusinessRuleException } from '../exception/business-rule.exception';
-import { Phone } from './phone';
+import { Phone } from './phone.model';
 import { Role } from './role.enum';
 
 export interface UserProps {

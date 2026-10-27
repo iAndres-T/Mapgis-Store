@@ -4,7 +4,7 @@ import { InsufficientStockException } from '../exception/insufficient-stock.exce
 import { ResourceNotFoundException } from '../exception/resource-not-found.exception';
 import { PaymentMethod } from './payment-method.enum';
 import { PaymentStatus } from './payment-status.enum';
-import { Product } from './product';
+import { Product } from './product.model';
 
 export interface PurchaseLine {
   productId: string;

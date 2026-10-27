@@ -1,6 +1,6 @@
 import { randomUUID } from 'node:crypto';
 import { BusinessRuleException } from '../exception/business-rule.exception';
-import { User } from './user';
+import { User } from './user.model';
 
 export interface ChargeProps {
   id: string;
