@@ -1,5 +1,4 @@
-import { PaymentMethod } from '../../../domain/model/payment-method.enum';
-import { Purchase, PurchaseLine } from '../../../domain/model/purchase.model';
+import { PaymentMethod, Purchase, PurchaseLine } from '@domain/model';
 
 export interface RegisterPurchaseCommand {
   userId: string;

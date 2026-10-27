@@ -1,4 +1,4 @@
-import { ProductImage } from '../../../domain/model/product.model';
+import { ProductImage } from '@domain/model';
 
 export interface ImageFile {
   buffer: Buffer;

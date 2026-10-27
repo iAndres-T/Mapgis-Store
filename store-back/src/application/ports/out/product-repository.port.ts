@@ -1,7 +1,9 @@
-import { Product } from '../../../domain/model/product.model';
+import { Product } from '@domain/model';
 
 export abstract class ProductRepositoryPort {
   abstract findById(id: string): Promise<Product | null>;
+
+  abstract findByIdForUpdate(id: string): Promise<Product | null>;
 
   abstract findByIds(ids: string[]): Promise<Product[]>;
 

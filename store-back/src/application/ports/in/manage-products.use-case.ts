@@ -1,5 +1,5 @@
-import { Product, ProductData } from '../../../domain/model/product.model';
-import { ImageFile } from '../out/image-storage.port';
+import { Product, ProductData } from '@domain/model';
+import { ImageFile } from '@application/ports/out';
 
 export interface CreateProductCommand extends ProductData {
   image?: ImageFile;

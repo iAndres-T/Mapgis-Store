@@ -1,4 +1,4 @@
-import { BillingCycle } from '../../../domain/model/billing-cycle.model';
+import { BillingCycle } from '@domain/model';
 
 export interface ChargeNotice {
   chargeId: string;

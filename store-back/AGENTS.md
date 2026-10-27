@@ -73,7 +73,7 @@ src/
 │   └── useCases/         Implementaciones de los casos de uso (*.service.ts)
 └── infrastructure/
     ├── adapters/
-    │   ├── in/rest/      Controllers, DTOs, guards, decorators, filtro global de excepciones
+    │   ├── in/rest/      controllers/, dto/ (request y *-response), decorators/, guards/, filters/, image-upload.ts
     │   └── out/
     │       ├── persistence/   entity/, adapters TypeORM, UnitOfWork
     │       ├── storage/       Cloudinary
@@ -175,11 +175,16 @@ Hay que seguir el estilo de los archivos existentes en `infrastructure/adapters/
 - `async/await`; no mezclar con `.then()`.
 - No usar `any`. Preferir tipos explícitos en las firmas públicas de puertos y casos de uso.
 - Los DTO validan forma y formato con `class-validator`; las reglas de negocio van en el dominio.
+- **Imports:**
+  - Entre carpetas, usar los alias de `tsconfig.json` (`@domain/*`, `@application/*`, `@infrastructure/*`) apuntando al barril de la carpeta. Ejemplo: `import { User, Role } from '@domain/model'`.
+  - Entre archivos de la misma carpeta, usar import relativo `./archivo` y nunca el propio `index.ts`, porque eso crea ciclos.
+  - Cada carpeta de código tiene un `index.ts` con `export * from './archivo'`. Al crear un archivo, agrégalo al barril.
+- Archivos subidos: tipar con `Express.Multer.File` (`@types/multer`).
 
 ### 4.4 Manejo de errores
 
 - **El dominio y la capa de aplicación lanzan solo subclases de `DomainException`.** Nunca `HttpException` de Nest.
-- **Un filtro global** (`infrastructure/adapters/in/rest/global-exception.filter.ts`) traduce las excepciones a HTTP:
+- **Un filtro global** (`infrastructure/adapters/in/rest/filters/global-exception.filter.ts`) traduce las excepciones a HTTP:
 
   | Excepción | HTTP |
   |---|---|
@@ -217,6 +222,7 @@ Hay que seguir el estilo de los archivos existentes en `infrastructure/adapters/
   - Formato de entrada: `3XXXXXXXXX`.
   - Se guarda como `573XXXXXXXXX`, listo para `wa.me`.
 - **No se puede eliminar un cliente con `debt > 0`.** Los borrados de usuarios y productos son siempre soft delete.
+- **Editar un usuario o un producto existente** se hace dentro de `UnitOfWork` con `findByIdForUpdate`. `save()` reescribe la fila completa, así que sin el bloqueo pisaría el `debt` o el `stock` que una compra concurrente acaba de modificar.
 
 ### 5.3 Compras
 
@@ -359,7 +365,6 @@ Variables pendientes de agregar cuando se integren los servicios:
 
 Dependencias previstas y aprobadas para cuando se necesiten:
 - `cloudinary`
-- `@types/multer`
 - `@nestjs/throttler`
 - `@nestjs/swagger`
 
@@ -385,8 +390,9 @@ Dependencias previstas y aprobadas para cuando se necesiten:
 | Modelos de dominio y excepciones | ✅ |
 | `BillingPolicy` (domain/service) | ✅ |
 | Puertos `application/ports/in` y `application/ports/out` | ✅ |
-| Casos de uso y adapters de persistencia + `UnitOfWork` | ⏳ |
-| Controllers, DTOs, filtro global, `DevAuthGuard` | ⏳ |
+| Casos de uso (`application/useCases`), excepto `AuthenticateUseCase` (va con JWT) | ✅ |
+| Adapters de persistencia + `UnitOfWork` | ⏳ |
+| Controllers, DTOs, filtro global, `DevAuthGuard`, `RolesGuard`, mappers de respuesta | ✅ (falta registrarlos en el módulo) |
 | Seed del admin inicial | ⏳ |
 | Cloudinary | ⏳ |
 | JWT + Passport | ⏳ (al final) |

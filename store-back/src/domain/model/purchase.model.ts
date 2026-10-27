@@ -1,7 +1,9 @@
 import { randomUUID } from 'node:crypto';
-import { BusinessRuleException } from '../exception/business-rule.exception';
-import { InsufficientStockException } from '../exception/insufficient-stock.exception';
-import { ResourceNotFoundException } from '../exception/resource-not-found.exception';
+import {
+  BusinessRuleException,
+  InsufficientStockException,
+  ResourceNotFoundException,
+} from '@domain/exception';
 import { PaymentMethod } from './payment-method.enum';
 import { PaymentStatus } from './payment-status.enum';
 import { Product } from './product.model';

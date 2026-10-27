@@ -10,8 +10,7 @@ import {
   PrimaryGeneratedColumn,
   type Relation,
 } from 'typeorm';
-import { PaymentMethod } from '../../../../../domain/model/payment-method.enum';
-import { PaymentStatus } from '../../../../../domain/model/payment-status.enum';
+import { PaymentMethod, PaymentStatus } from '@domain/model';
 import { ChargeEntity } from './charge.entity';
 import { PurchaseItemEntity } from './purchase-item.entity';
 import { UserEntity } from './user.entity';
@@ -41,7 +40,12 @@ export class PurchaseEntity {
   @JoinColumn({ name: 'user_id' })
   user!: Relation<UserEntity>;
 
-  @Column({ name: 'payment_method', type: 'enum', enum: PaymentMethod, enumName: 'payment_method' })
+  @Column({
+    name: 'payment_method',
+    type: 'enum',
+    enum: PaymentMethod,
+    enumName: 'payment_method',
+  })
   paymentMethod!: PaymentMethod;
 
   @Column({ type: 'enum', enum: PaymentStatus, enumName: 'payment_status' })
@@ -53,11 +57,16 @@ export class PurchaseEntity {
   @Column({ name: 'charge_id', type: 'uuid', nullable: true })
   chargeId?: string | null;
 
-  @ManyToOne(() => ChargeEntity, (c) => c.purchases, { nullable: true, onDelete: 'RESTRICT' })
+  @ManyToOne(() => ChargeEntity, (c) => c.purchases, {
+    nullable: true,
+    onDelete: 'RESTRICT',
+  })
   @JoinColumn({ name: 'charge_id' })
   charge?: Relation<ChargeEntity> | null;
 
-  @OneToMany(() => PurchaseItemEntity, (i) => i.purchase, { cascade: ['insert'] })
+  @OneToMany(() => PurchaseItemEntity, (i) => i.purchase, {
+    cascade: ['insert'],
+  })
   items!: Relation<PurchaseItemEntity>[];
 
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })

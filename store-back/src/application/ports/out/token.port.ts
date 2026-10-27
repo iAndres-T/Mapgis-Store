@@ -1,4 +1,4 @@
-import { User } from '../../../domain/model/user.model';
+import { User } from '@domain/model';
 
 // Definido, sin implementar hasta integrar JWT
 export abstract class TokenPort {

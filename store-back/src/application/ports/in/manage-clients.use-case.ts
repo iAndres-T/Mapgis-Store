@@ -1,4 +1,4 @@
-import { User } from '../../../domain/model/user.model';
+import { User } from '@domain/model';
 
 export abstract class ManageClientsUseCase {
   abstract create(name: string): Promise<User>;

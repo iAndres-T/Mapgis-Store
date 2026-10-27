@@ -1,4 +1,4 @@
-import { BillingTooSoonException } from '../exception/billing-too-soon.exception';
+import { BillingTooSoonException } from '@domain/exception';
 
 const DAY_MS = 86_400_000;
 

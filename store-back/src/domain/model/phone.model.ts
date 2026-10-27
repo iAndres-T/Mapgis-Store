@@ -1,4 +1,4 @@
-import { BusinessRuleException } from '../exception/business-rule.exception';
+import { BusinessRuleException } from '@domain/exception';
 
 export class Phone {
   private static readonly COUNTRY_CODE = '57';

@@ -1,6 +1,4 @@
-import { PaymentMethod } from '../../../domain/model/payment-method.enum';
-import { PaymentStatus } from '../../../domain/model/payment-status.enum';
-import { Purchase } from '../../../domain/model/purchase.model';
+import { PaymentMethod, PaymentStatus, Purchase } from '@domain/model';
 
 // Modelo de lectura para el historial: incluye el nombre del producto
 export interface PurchaseSummary {

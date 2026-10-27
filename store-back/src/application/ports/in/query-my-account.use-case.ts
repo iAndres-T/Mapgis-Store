@@ -1,5 +1,5 @@
-import { User } from '../../../domain/model/user.model';
-import { PurchaseSummary } from '../out/purchase-repository.port';
+import { User } from '@domain/model';
+import { PurchaseSummary } from '@application/ports/out';
 
 export abstract class QueryMyAccountUseCase {
   abstract getProfile(userId: string): Promise<User>;

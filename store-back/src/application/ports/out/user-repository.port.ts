@@ -1,5 +1,4 @@
-import { Role } from '../../../domain/model/role.enum';
-import { User } from '../../../domain/model/user.model';
+import { Role, User } from '@domain/model';
 
 export abstract class UserRepositoryPort {
   abstract findById(id: string): Promise<User | null>;

@@ -1,5 +1,5 @@
 import { randomUUID } from 'node:crypto';
-import { BusinessRuleException } from '../exception/business-rule.exception';
+import { BusinessRuleException } from '@domain/exception';
 
 export interface ProductImage {
   url: string;
